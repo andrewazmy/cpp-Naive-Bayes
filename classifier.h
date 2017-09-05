@@ -24,8 +24,8 @@ public:
 
 private:
   vector<double> prior_probs_;
-  vector<vector<double>> means_;    // Mean
-  vector<vector<double>> stds_;     // Standard deviation
+  vector<vector<double>> means_;      // Mean
+  vector<vector<double>> variance_;   // Variance
 
 };
 

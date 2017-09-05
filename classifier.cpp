@@ -38,16 +38,45 @@ void GNB::train(vector<vector<double>> data, vector<string> labels) {
 
   this->prior_probs_.resize(num_classes);
   this->means_.resize(num_classes);
-  this->stds_.resize(num_classes);
+  this->variance_.resize(num_classes);
 
   // Init means and stds
   for (size_t i = 0; i < means_.size(); ++i) {
     for (size_t j = 0; j < num_features; ++j){
       this->means_[i].push_back(0.);
-      this->stds_[i].push_back(0.);
+      this->variance_[i].push_back(0.);
     }
   }
 
+  // Calculate mean value for each feature
+  for (size_t i = 0; i < data.size(); ++i) {
+    const auto& feature_val = data[i];
+    const auto& label = labels[i];
+    unsigned int class_id = 0;
+
+    // Find id of the current class
+    for (size_t j = 0; j < num_classes; ++j) {
+      if (label == this->possible_labels[j]) {
+        class_id = j;
+        break;
+      }
+    }
+
+    labels_distrib[class_id] += 1;
+    auto& mean = this->means_[class_id];
+
+    for (size_t j = 0; j < num_features; ++j) {
+      mean[j] += feature_val[j];
+    }
+  }
+
+  for (size_t i = 0; i < num_classes; ++i) {
+    for (size_t j = 0; j < num_features; ++j) {
+      (this->means_[i])[j] /= (double)labels_distrib[i];
+    }
+  }
+
+  // Calculate variance value for each feature
 
 }
 
