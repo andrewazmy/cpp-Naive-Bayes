@@ -21,6 +21,12 @@ public:
 
   void train(vector<vector<double>> data, vector<string> labels);
     string predict(vector<double>);
+
+private:
+  vector<double> prior_probs_;
+  vector<vector<double>> means_;    // Mean
+  vector<vector<double>> stds_;     // Standard deviation
+
 };
 
 #endif

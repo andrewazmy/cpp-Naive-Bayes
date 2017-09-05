@@ -30,6 +30,25 @@ void GNB::train(vector<vector<double>> data, vector<string> labels) {
  *  - Each label is one of "left", "keep", or "right".
  */
 
+  const unsigned int num_features = data[0].size();
+  const unsigned int num_classes  = this->possible_labels.size();
+
+  // Stores how many elements of class presented in dataset
+  vector<int> labels_distrib (num_classes, 0);
+
+  this->prior_probs_.resize(num_classes);
+  this->means_.resize(num_classes);
+  this->stds_.resize(num_classes);
+
+  // Init means and stds
+  for (size_t i = 0; i < means_.size(); ++i) {
+    for (size_t j = 0; j < num_features; ++j){
+      this->means_[i].push_back(0.);
+      this->stds_[i].push_back(0.);
+    }
+  }
+
+
 }
 
 
@@ -48,11 +67,8 @@ string GNB::predict(vector<double> sample)
  *
  * A label representing the best guess of the classifier. Can
  * be one of "left", "keep" or "right".
- *
- * # TODO - complete this
 */
 
   return this->possible_labels[1];
-
 
 }
