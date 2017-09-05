@@ -1,5 +1,6 @@
 #ifndef CLASSIFIER_H
 #define CLASSIFIER_H
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -10,27 +11,16 @@ using namespace std;
 
 class GNB {
 public:
+  vector<string> possible_labels = {"left", "keep", "right"};
 
-    vector<string> possible_labels = {"left","keep","right"};
+  // Constructor
+  GNB();
 
+  // Destructor
+  virtual ~GNB();
 
-    /**
-      * Constructor
-      */
-    GNB();
-
-    /**
-     * Destructor
-     */
-    virtual ~GNB();
-
-    void train(vector<vector<double> > data, vector<string>  labels);
-
+  void train(vector<vector<double>> data, vector<string> labels);
     string predict(vector<double>);
-
 };
 
 #endif
-
-
-
