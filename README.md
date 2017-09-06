@@ -18,7 +18,7 @@ Classifier can predict which of these three maneuvers a vehicle is engaged in gi
 
 * s
 * d
-​* s_dot
-​* d_dot
-​​ 
+* s_dot
+* d_dot
+
 The lane width is 4 meters (this might be helpful in engineering features for an algorithm).
