@@ -127,7 +127,33 @@ string GNB::predict(vector<double> sample)
  * A label representing the best guess of the classifier. Can
  * be one of "left", "keep" or "right".
 */
+  const unsigned int dataset_size = sample.size();
+  const unsigned int num_classes  = this->possible_labels.size();
 
-  return this->possible_labels[1];
+  // Probability per class
+  vector<double> class_prob (num_classes, 1.);
 
+  for (size_t i = 0; i < num_classes; ++i) {
+    const auto &mean = this->means_[i];
+    const auto &var = this->variance_[i];
+
+    for (size_t j = 0; j < dataset_size; ++j) {
+      double diff = sample[j] - mean[j];
+      diff = diff * diff / (2. * var[j]);
+      class_prob[i] *= exp(-diff) / sqrt(var[j]);
+    }
+  }
+
+    // Assign class with max. probability
+    double max_prob = class_prob[0];
+    unsigned int class_index = 0;
+
+    for (size_t i = 1; i < num_classes; ++i) {
+      if (class_prob[i] > max_prob) {
+        max_prob = class_prob[i];
+        class_index = i;
+      }
+    }
+
+  return this->possible_labels[class_index];
 }
