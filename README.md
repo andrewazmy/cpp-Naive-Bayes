@@ -16,9 +16,9 @@ Classifier can predict which of these three maneuvers a vehicle is engaged in gi
 
 ### Each coordinate contains 4 pieces of information:
 
-* s
-* d
-* s_dot
-* d_dot
+* **s** - distance along the road (longitudinal displacement)
+* **d** - side-to-side position on the road (lateral displacement)
+* **s_dot** - velocity of the car along the s axis (for longitudinal displacement)
+* **d_dot** - velocity of the car along the d axis (for lateral displacement)
 
 The lane width is 4 meters (this might be helpful in engineering features for an algorithm).

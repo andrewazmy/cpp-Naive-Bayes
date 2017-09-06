@@ -46,8 +46,8 @@ int main() {
   // Each coordinate contains 4 pieces of information:
   // s - distance along the road (longitudinal displacement)
   // d - side-to-side position on the road (lateral displacement)
-  // s_dot - delta for longitudinal displacement
-  // d_dot - delta for lateral displacement
+  // s_dot - velocity of the car along the s axis (for longitudinal displacement)
+  // d_dot - velocity of the car along the d axis (for lateral displacement)
   vector<vector<double>> X_train = Load_State("./pred_data/train_states.txt");
   vector<vector<double>> X_test  = Load_State("./pred_data/test_states.txt");
 
