@@ -1,4 +1,4 @@
-# Implementing Naive Bayes
+# Implementing Naive Bayes on C++
 
 [image1]: ./imgs/img_01.png "img_01.png"
 
